@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Tree, Input } from 'antd';
-
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 const TreeNode = Tree.TreeNode;
 const Search = Input.Search;
 const x = 3;
@@ -123,4 +124,4 @@ class SearchTree extends React.Component {
 		);
 	}
 }
-export default SearchTree;
+export default connect((state)=>({}),{})(SearchTree);
