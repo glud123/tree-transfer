@@ -72,6 +72,7 @@ export const MakeTreeData = (data) => {
 	// console.log(data);
 	// let { treeOBj, treeArray } = separateData(treeData);
 	let treeData = mergeData(separateData(treeArray));
+	return treeData;
 	console.log(treeData);
 	// console.log(treeOBj);
 	// console.log(treeArray);

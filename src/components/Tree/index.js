@@ -92,9 +92,10 @@ class SearchTree extends React.Component {
 		const { searchValue, expandedKeys, autoExpandParent } = this.state;
 		const loop = (data) =>
 			data.map((item) => {
-				const index = item.key.indexOf(searchValue);
-				const beforeStr = item.key.substr(0, index);
-				const afterStr = item.key.substr(index + searchValue.length);
+				const titleText = `${item.key} ${item.title}`;
+				const index = titleText.indexOf(searchValue);
+				const beforeStr = titleText.substr(0, index);
+				const afterStr = titleText.substr(index + searchValue.length);
 				const title =
 					index > -1 ? (
 						<span>
@@ -103,7 +104,7 @@ class SearchTree extends React.Component {
 							{afterStr}
 						</span>
 					) : (
-						<span>{item.key}</span>
+						<span>{titleText}</span>
 					);
 				if (item.children) {
 					return (
@@ -116,12 +117,12 @@ class SearchTree extends React.Component {
 			});
 		return (
 			<div>
-				<Search style={{ marginBottom: 8 }} placeholder='Search' onChange={this.onChange} />
+				<Search style={{ marginBottom: 8 }} placeholder="Search" onChange={this.onChange} />
 				<Tree onExpand={this.onExpand} expandedKeys={expandedKeys} autoExpandParent={autoExpandParent}>
-					{loop(gData)}
+					{loop(this.props.data)}
 				</Tree>
 			</div>
 		);
 	}
 }
-export default connect((state)=>({}),{})(SearchTree);
+export default connect((state) => ({}), {})(SearchTree);
