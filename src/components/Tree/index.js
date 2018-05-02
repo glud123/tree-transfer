@@ -76,12 +76,15 @@ class SearchTree extends React.Component {
 		const value = e.target.value;
 		const expandedKeys = dataList
 			.map((item) => {
-				if (item.key.indexOf(value) > -1) {
-					return getParentKey(item.key, gData);
+				const titleText = `${item.key} ${item.title}`;
+				if (titleText.indexOf(value) > -1) {
+					return getParentKey(item.key, this.props.data);
 				}
 				return null;
 			})
 			.filter((item, i, self) => item && self.indexOf(item) === i);
+		console.log(expandedKeys);
+
 		this.setState({
 			expandedKeys,
 			searchValue: value,
