@@ -8,7 +8,11 @@ let defaultState = {
 	// 左树树数组
 	leftTreeData: [],
 	// 右树树数组
-	rightTreeData: []
+	rightTreeData: [],
+	// 选中左侧的树节点
+	leftSelectedKey: [],
+	// 选中右侧的树节点
+	rightSelectedKey: []
 };
 // 首页表单数据
 export const TreeTransferData = (state = defaultState, action = {}) => {
@@ -23,6 +27,10 @@ export const TreeTransferData = (state = defaultState, action = {}) => {
 			return { ...state, ...{ leftTreeData: action.data } };
 		case TreeTransfer.SETRIGHTTREEDATA:
 			return { ...state, ...{ rightTreeData: action.data } };
+		case TreeTransfer.SETLEFTSELECTEDKEY:
+			return { ...state, ...{ leftSelectedKey: action.data } };
+		case TreeTransfer.SETRIGHTSELECTEDKEY:
+			return { ...state, ...{ rightSelectedKey: action.data } };
 		default:
 			return state;
 	}

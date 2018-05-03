@@ -1,5 +1,4 @@
 import _ from 'lodash';
-
 /**
  * 将树形平铺数据进行分离整理
  * @param {Array} treeData 
@@ -82,4 +81,74 @@ export const MakeTreeData = (data) => {
 	let treeData = mergeData(separateData(treeArray));
 	return treeData;
 	console.log(treeData);
+};
+/**
+ * 获取选中节点父节点
+ * @param {Array} arrayData  原始数组
+ * @param {Object} treeObj  原始树对象
+ * @param {Object} nodeData  选中节点对象
+ * @param {Array} parentArray  选中节点及其所有父节点
+ */
+const getParentNodeData = (arrayData, treeObj, nodeData, parentArray) => {
+	let { key, parentKey } = nodeData;
+	let parentNodeData;
+	if (parentKey) {
+		parentNodeData = arrayData.find((hItem) => hItem.key === parentKey);
+	} else {
+		parentNodeData = arrayData.find((hItem) => hItem.key === key);
+	}
+	if (treeObj.hasOwnProperty(parentKey)) {
+		let item = treeObj[parentKey];
+		let node = item.find((i) => i.key === key);
+		if (node) {
+			parentArray.push(node);
+			return getParentNodeData(arrayData, treeObj, parentNodeData, parentArray);
+		}
+	} else {
+		parentArray.push(parentNodeData);
+	}
+	return parentArray;
+};
+/**
+ * 获取所有子节点平铺数组
+ * @param {Object} treeObj 树对象 
+ * @param {Object} nodeData 节点数据
+ * @param {Array} childrenArray 所有子节点平铺数组
+ */
+const getChildrenNodeData = (treeObj, nodeData, childrenArray) => {
+	let { key, parentKey } = nodeData;
+	if (treeObj.hasOwnProperty(key)) {
+		let item = treeObj[key];
+		return getChildData(treeObj, item, childrenArray);
+	}
+};
+/**
+ * 递归找到说有子节点的子节点
+ * @param {Object} treeObj  树对象
+ * @param {Array} childrenNodes 子节点数组
+ * @param {Array} childrenArray  所有子节点平铺数组
+ */
+const getChildData = (treeObj, childrenNodes, childrenArray) => {
+	childrenNodes.map((item, index) => {
+		let { key } = item;
+		if (treeObj.hasOwnProperty(key)) {
+			getChildData(treeObj, treeObj[key], childrenArray);
+		}
+		childrenArray.push(item);
+	});
+	return childrenArray;
+};
+
+/**
+ * 获取属性穿梭之后的树形数据
+ * @param {Array} data 
+ */
+export const TransTreeData = (key, arrayData) => {
+	let nodeData = arrayData.find((item) => item.key === key);
+	let { treeObj, treeArray } = separateData(arrayData);
+	let parentArray = [],
+		childrenArray = [];
+	parentArray = getParentNodeData(arrayData, treeObj, nodeData, parentArray);
+	childrenArray = getChildrenNodeData(treeObj, nodeData, childrenArray);
+	return parentArray.concat(childrenArray);
 };

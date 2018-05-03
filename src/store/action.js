@@ -34,3 +34,17 @@ export const setRightTreeData = (data) => {
 		data
 	};
 };
+// 设置选中左侧树节点
+export const setLeftSelectedKey = (data) => {
+	return {
+		type: TreeTransfer.SETLEFTSELECTEDKEY,
+		data
+	};
+};
+// 设置选中右侧树节点
+export const setRightSelectedKey = (data) => {
+	return {
+		type: TreeTransfer.SETRIGHTSELECTEDKEY,
+		data
+	};
+};

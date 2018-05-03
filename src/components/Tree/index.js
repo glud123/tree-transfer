@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Tree, Input } from 'antd';
 import { connect } from 'react-redux';
+// import {  } from 'Store/action';
 import PropTypes from 'prop-types';
 const TreeNode = Tree.TreeNode;
 const Search = Input.Search;
@@ -59,12 +60,10 @@ class SearchTree extends React.Component {
 			autoExpandParent: true
 		});
 	};
-	onSelect = (selectedKeys,e) => {
-		console.log(selectedKeys);
-		
-	};
+	
 	render() {
 		const { searchValue, expandedKeys, autoExpandParent } = this.state;
+		let {onSelect} = this.props;
 		const loop = (data) =>
 			data.map((item) => {
 				const titleText = `${item.key} ${item.title}`;
@@ -96,7 +95,7 @@ class SearchTree extends React.Component {
 				<Tree
 					showLine={true}
 					onExpand={this.onExpand}
-					onSelect={this.onSelect}
+					onSelect={onSelect}
 					expandedKeys={expandedKeys}
 					autoExpandParent={autoExpandParent}
 				>
@@ -106,4 +105,6 @@ class SearchTree extends React.Component {
 		);
 	}
 }
-export default connect((state) => ({}), {})(SearchTree);
+SearchTree.PropTypes = {
+};
+export default connect((state) => ({}), { })(SearchTree);
