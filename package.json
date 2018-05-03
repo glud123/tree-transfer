@@ -3,9 +3,13 @@
 	"version": "0.0.1",
 	"description": "react antd tree transfer (tree to tree)",
 	"main": "index.js",
+	"style": "style.css",
+	"files": [
+		"lib"
+	],
 	"scripts": {
 		"dev": "webpack-dev-server --progress --colors --config ./config/dev.js",
-		"build": "webpack --progress --colors --config ./config/build.js"
+		"build": "export NODE_ENV = develope && webpack --progress --colors --config ./config/build.js"
 	},
 	"keywords": [
 		"react",
@@ -15,6 +19,11 @@
 		"tree-to-tree"
 	],
 	"author": "glud123",
+	"homepage": "https://github.com/glud123/tree-transfer",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/glud123/tree-transfer"
+	},
 	"license": "MIT",
 	"devDependencies": {
 		"autoprefixer": "^8.1.0",

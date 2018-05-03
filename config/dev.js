@@ -3,12 +3,12 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const BaseData = require('./base');
 let { configInfo, pubPath } = BaseData;
 const port = '3003';
 const host = '127.0.0.1';
+
 module.exports = {
 	...configInfo,
 	/**
@@ -18,6 +18,8 @@ module.exports = {
 	 * development 开发模式
 	 */
 	mode: 'development',
+	context: path.resolve(pubPath, 'example/'),
+	entry: './index.js',
 	output: {
 		path: path.join(pubPath, 'dist'),
 		filename: '[name].[chunk:8].js', // 生产环境可以使用 chunkhash 文件内容 hash 校验
@@ -54,7 +56,7 @@ module.exports = {
 						return '/index.html';
 					}
 				}
-			},
+			}
 			// '/test': {
 			// 	// 代理地址
 			// 	target: 'http://10.11.115.164:80',
@@ -94,7 +96,6 @@ module.exports = {
 			collections: true,
 			paths: true
 		}),
-		new CopyWebpackPlugin([ { from: pubPath + '/src/assets', to: './assets' } ]),
 		new webpack.NamedModulesPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
 		new OpenBrowserPlugin({ url: `http://${host}:${port}` })

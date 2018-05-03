@@ -1,4 +1,6 @@
 const path = require('path');
+console.log(process.env.NODE_ENV);
+
 const devMode = process.env.NODE_ENV !== 'production';
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 /**
@@ -7,8 +9,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const pubPath = __dirname.split('config')[0];
 module.exports = {
 	configInfo: {
-		context: path.resolve(pubPath, 'src'),
-		entry: './index.js',
 		// 包(bundle)应该运行的环境
 		target: 'web',
 		module: {
@@ -57,8 +57,8 @@ module.exports = {
 		},
 		// 不要遵循/打包这些模块，而是在运行时从环境中请求他们
 		externals: {
-			react: 'React',
-			'react-dom': 'ReactDOM'
+			// react: 'React'
+			// 'react-dom': 'ReactDOM'
 		},
 		resolve: {
 			extensions: [ '.jsx', '.js' ],
