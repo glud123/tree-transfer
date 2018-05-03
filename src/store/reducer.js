@@ -1,6 +1,8 @@
 import * as TreeTransfer from './action-type';
 
 let defaultState = {
+	// 完整树原始数据
+	allTreeArray:[],
 	// 左树平铺原始树组
 	leftTreeArray: [],
 	// 右树平铺原始数组
@@ -19,11 +21,13 @@ export const TreeTransferData = (state = defaultState, action = {}) => {
 	switch (action.type) {
 		case TreeTransfer.CLEARDATA:
 			return { ...state, ...defaultState };
-		case TreeTransfer.STELEFTTREEARRAY:
+		case TreeTransfer.SETALLTREEARRAY:
+			return { ...state, ...{ allTreeArray: action.data } };
+		case TreeTransfer.SETLEFTTREEARRAY:
 			return { ...state, ...{ leftTreeArray: action.data } };
 		case TreeTransfer.SETRIGHTTREEARRAY:
 			return { ...state, ...{ rightTreeArray: action.data } };
-		case TreeTransfer.STELEFTTREEDATA:
+		case TreeTransfer.SETLEFTTREEDATA:
 			return { ...state, ...{ leftTreeData: action.data } };
 		case TreeTransfer.SETRIGHTTREEDATA:
 			return { ...state, ...{ rightTreeData: action.data } };

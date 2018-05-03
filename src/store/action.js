@@ -6,10 +6,17 @@ export const clearData = () => {
 		type: TreeTransfer.CLEARDATA
 	};
 };
+// 设置完整树原始数据
+export const setAllTreeArray = (data) => {
+	return {
+		type: TreeTransfer.SETALLTREEARRAY,
+		data
+	};
+};
 // 设置左树原始数据
 export const setLeftTreeArray = (data) => {
 	return {
-		type: TreeTransfer.STELEFTTREEARRAY,
+		type: TreeTransfer.SETLEFTTREEARRAY,
 		data
 	};
 };
@@ -23,7 +30,7 @@ export const setRightTreeArray = (data) => {
 // 设置左树原始数据
 export const setLeftTreeData = (data) => {
 	return {
-		type: TreeTransfer.STELEFTTREEDATA,
+		type: TreeTransfer.SETLEFTTREEDATA,
 		data
 	};
 };

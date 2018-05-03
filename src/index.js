@@ -3,16 +3,20 @@ import ReactDom from 'react-dom';
 import { Provider, connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Store from 'Store';
-import { setLeftTreeArray } from 'Store/action';
+import { setLeftTreeArray, setRightTreeArray, setAllTreeArray } from 'Store/action';
 import Transfer from 'Components/Transfer';
 import Data from './data.json';
+const leftTree = Data;
+const rightTree = [];
 class App extends Component {
 	constructor(props) {
 		super(props);
 	}
 
 	componentWillMount() {
-		this.props.setLeftTreeArray(Data);
+		this.props.setAllTreeArray(leftTree.concat(rightTree));
+		this.props.setLeftTreeArray(leftTree);
+		this.props.setRightTreeArray(rightTree);
 	}
 
 	render() {
@@ -27,7 +31,9 @@ App.PropTypes = {
 	setLeftTreeArray: PropTypes.func.isRequired
 };
 const APP = connect((state) => ({}), {
-	setLeftTreeArray
+	setAllTreeArray,
+	setLeftTreeArray,
+	setRightTreeArray
 })(App);
 ReactDOM.render(
 	<Provider store={Store}>

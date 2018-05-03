@@ -47,21 +47,24 @@ class Transfer extends Component {
 	 *@param {String} key 
 	 */
 	handleBtnClick = (key) => {
+		let nodes;
 		switch (key) {
 			case 'allToRight':
 				this.setState({
 					btnType: 'allToRight'
 				});
-				this.props.setRightTreeData(this.props.leftTreeData);
+				this.props.setRightTreeData(MakeTreeData(this.props.allTreeArray));
 				this.props.setLeftTreeData([]);
-				this.props.setRightTreeArray(this.props.leftTreeArray);
+				this.props.setRightTreeArray(this.props.allTreeArray);
 				this.props.setLeftTreeArray([]);
 				break;
 			case 'toRight':
 				this.setState({
 					btnType: 'toRight'
 				});
-				let nodes = TransTreeData(this.props.leftSelectedKey[0], this.props.leftTreeArray);
+				nodes = TransTreeData(this.props.leftSelectedKey[0], this.props.leftTreeArray).concat(
+					this.props.rightTreeArray
+				);
 				this.props.setRightTreeArray(nodes);
 				this.props.setRightTreeData(MakeTreeData(nodes));
 				break;
@@ -69,15 +72,20 @@ class Transfer extends Component {
 				this.setState({
 					btnType: 'tolLeft'
 				});
+				nodes = TransTreeData(this.props.leftSelectedKey[0], this.props.rightTreeArray).concat(
+					this.props.leftTreeArray
+				);
+				this.props.setLeftTreeArray(nodes);
+				this.props.setLeftTreeData(MakeTreeData(nodes));
 				break;
 			case 'allToLeft':
 				this.setState({
 					btnType: 'allToLeft'
 				});
 				this.props.setRightTreeData([]);
-				this.props.setLeftTreeData(this.props.rightTreeData);
+				this.props.setLeftTreeData(MakeTreeData(this.props.allTreeArray));
 				this.props.setRightTreeArray([]);
-				this.props.setLeftTreeArray(this.props.rightTreeArray);
+				this.props.setLeftTreeArray(this.props.allTreeArray);
 				break;
 			default:
 				break;
@@ -151,10 +159,11 @@ class Transfer extends Component {
 	}
 }
 Transfer.PropTypes = {
-	setLeftTreeArray: PropTypes.func.isRequired,
-	setRightTreeArray: PropTypes.func.isRequired,
+	allTreeArray: PropTypes.array.isRequired,
 	leftTreeArray: PropTypes.array.isRequired,
 	rightTreeArray: PropTypes.array.isRequired,
+	setLeftTreeArray: PropTypes.func.isRequired,
+	setRightTreeArray: PropTypes.func.isRequired,
 	leftTreeData: PropTypes.array.isRequired,
 	rightTreeData: PropTypes.array.isRequired,
 	setLeftTreeData: PropTypes.func.isRequired,
@@ -166,6 +175,7 @@ Transfer.PropTypes = {
 };
 export default connect(
 	(state) => ({
+		allTreeArray: state.TreeTransferData.allTreeArray,
 		leftTreeArray: state.TreeTransferData.leftTreeArray,
 		rightTreeArray: state.TreeTransferData.rightTreeArray,
 		leftTreeData: state.TreeTransferData.leftTreeData,

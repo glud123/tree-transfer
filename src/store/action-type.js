@@ -1,11 +1,13 @@
 // 清空数据
 export const CLEARDATA = 'CLEARDATA';
+// 设置完整树原始数据
+export const SETALLTREEARRAY = 'SETALLTREEARRAY';
 // 设置左树原始数据
-export const STELEFTTREEARRAY = 'STELEFTTREEARRAY';
+export const SETLEFTTREEARRAY = 'SETLEFTTREEARRAY';
 // 设置右树原始数据
 export const SETRIGHTTREEARRAY = 'SETRIGHTTREEARRAY';
 // 设置左树原始数据
-export const STELEFTTREEDATA = 'STELEFTTREEDATA';
+export const SETLEFTTREEDATA = 'SETLEFTTREEDATA';
 // 设置右树原始数据
 export const SETRIGHTTREEDATA = 'SETRIGHTTREEDATA';
 // 设置选中左侧树节点

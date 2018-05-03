@@ -141,7 +141,8 @@ const getChildData = (treeObj, childrenNodes, childrenArray) => {
 
 /**
  * 获取属性穿梭之后的树形数据
- * @param {Array} data 
+ * @param {Array} arrayData 起始穿梭树数组
+ * @param {String} key 选中的节点key
  */
 export const TransTreeData = (key, arrayData) => {
 	let nodeData = arrayData.find((item) => item.key === key);
@@ -150,5 +151,7 @@ export const TransTreeData = (key, arrayData) => {
 		childrenArray = [];
 	parentArray = getParentNodeData(arrayData, treeObj, nodeData, parentArray);
 	childrenArray = getChildrenNodeData(treeObj, nodeData, childrenArray);
+	parentArray = parentArray ? parentArray : [];
+	childrenArray = childrenArray ? childrenArray : [];
 	return parentArray.concat(childrenArray);
 };
