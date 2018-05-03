@@ -25,7 +25,7 @@ class Transfer extends Component {
 		return (
 			<div className="tree-transfer">
 				<div className="tree-transfer-container">
-					<Tree data={this.props.leftTreeData} />
+					<Tree data={this.props.leftTreeData} dataList={this.props.leftTreeArray}/>
 				</div>
 				<div className="tree-transfer-middle">
 					<Button>{`>>`}</Button>
@@ -34,7 +34,7 @@ class Transfer extends Component {
 					<Button>{`<<`}</Button>
 				</div>
 				<div className="tree-transfer-container">
-					<Tree data={this.props.rightTreeData} />
+					<Tree data={this.props.rightTreeData} dataList={this.props.rightTreeArray}/>
 				</div>
 			</div>
 		);

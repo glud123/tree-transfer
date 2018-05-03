@@ -6,26 +6,29 @@ import _ from 'lodash';
  * @returns {treeOBj,treeArray}
  */
 const separateData = (treeData) => {
-	let treeOBj = {},
+	let treeObj = {},
 		treeArray = [];
 	treeData.map((item, index) => {
 		if (item.parentKey) {
-			if (!treeOBj[item.parentKey]) {
-				treeOBj[item.parentKey] = [];
+			if (!treeObj[item.parentKey]) {
+				treeObj[item.parentKey] = [];
 			}
-			treeOBj[item.parentKey].push(item);
+			treeObj[item.parentKey].push(item);
 		} else {
 			treeArray.push(item);
 		}
 	});
 	return {
-		treeOBj,
+		treeObj,
 		treeArray
 	};
 };
-
-const makeTreeObject = (treeOBj) => {
-	let dataObject = _.cloneDeep(treeOBj);
+/**
+ * 整理树对象,将原始树对象进行合并,为每个节点添加是否为叶子节点属性
+ * @param {Object} treeObj 
+ */
+const makeTreeObject = (treeObj) => {
+	let dataObject = _.cloneDeep(treeObj);
 	for (const itemKey in dataObject) {
 		if (dataObject.hasOwnProperty(itemKey)) {
 			const itemEl = dataObject[itemKey];
@@ -43,13 +46,17 @@ const makeTreeObject = (treeOBj) => {
 	}
 	return dataObject;
 };
-
+/**
+ * 整理树数组
+ * @param {Array} treeArray 
+ * @returns 最终的树数组
+ */
 const makeTreeArray = (treeArray) => {
 	let dataArray = _.cloneDeep(treeArray);
-	return (treeOBj) => {
+	return (treeObj) => {
 		return dataArray.map((item, index) => {
-			if (treeOBj.hasOwnProperty(item.key)) {
-				item.children = treeOBj[item.key];
+			if (treeObj.hasOwnProperty(item.key)) {
+				item.children = treeObj[item.key];
 				item.isLeaf = false;
 			} else {
 				item.isLeaf = true;
@@ -58,9 +65,12 @@ const makeTreeArray = (treeArray) => {
 		});
 	};
 };
-
-const mergeData = ({ treeOBj, treeArray }) => {
-	return makeTreeArray(treeArray)(makeTreeObject(treeOBj));
+/**
+ * 
+ * @param {Object} Object - treeObj 树数组除第一层外的元素对象 treeArray 树数组第一层元素数组  
+ */
+const mergeData = ({ treeObj, treeArray }) => {
+	return makeTreeArray(treeArray)(makeTreeObject(treeObj));
 };
 
 /**
@@ -69,11 +79,7 @@ const mergeData = ({ treeOBj, treeArray }) => {
  */
 export const MakeTreeData = (data) => {
 	let treeArray = _.cloneDeep(data);
-	// console.log(data);
-	// let { treeOBj, treeArray } = separateData(treeData);
 	let treeData = mergeData(separateData(treeArray));
 	return treeData;
 	console.log(treeData);
-	// console.log(treeOBj);
-	// console.log(treeArray);
 };
