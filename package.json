@@ -1,6 +1,6 @@
 {
 	"name": "tree-transfer",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "react antd tree transfer (tree to tree)",
 	"main": "index.js",
 	"style": "style.css",
