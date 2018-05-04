@@ -125,19 +125,9 @@ class Transfer extends Component {
 				className,
 				key
 			} = item;
-			return ( <
-				Button key = {
-					key
-				}
-				className = {
-					className
-				}
-				onClick = {
-					this.handleBtnClick.bind(this, key)
-				} > {
-					name
-				} <
-				/Button>
+			return ( <Button key = {key} className = {className} onClick = {this.handleBtnClick.bind(this, key)} > 
+						{name}
+					</Button>
 			);
 		});
 	};
