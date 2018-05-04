@@ -68,7 +68,10 @@ const makeTreeArray = (treeArray) => {
  * 
  * @param {Object} Object - treeObj 树数组除第一层外的元素对象 treeArray 树数组第一层元素数组  
  */
-const mergeData = ({ treeObj, treeArray }) => {
+const mergeTreeData = ({
+	treeObj,
+	treeArray
+}) => {
 	return makeTreeArray(treeArray)(makeTreeObject(treeObj));
 };
 
@@ -78,7 +81,7 @@ const mergeData = ({ treeObj, treeArray }) => {
  */
 export const MakeTreeData = (data) => {
 	let treeArray = _.cloneDeep(data);
-	let treeData = mergeData(separateData(treeArray));
+	let treeData = mergeTreeData(separateData(treeArray));
 	return treeData;
 	console.log(treeData);
 };
@@ -90,7 +93,10 @@ export const MakeTreeData = (data) => {
  * @param {Array} parentArray  选中节点及其所有父节点
  */
 const getParentNodeData = (arrayData, treeObj, nodeData, parentArray) => {
-	let { key, parentKey } = nodeData;
+	let {
+		key,
+		parentKey
+	} = nodeData;
 	let parentNodeData;
 	if (parentKey) {
 		parentNodeData = arrayData.find((hItem) => hItem.key === parentKey);
@@ -116,7 +122,10 @@ const getParentNodeData = (arrayData, treeObj, nodeData, parentArray) => {
  * @param {Array} childrenArray 所有子节点平铺数组
  */
 const getChildrenNodeData = (treeObj, nodeData, childrenArray) => {
-	let { key, parentKey } = nodeData;
+	let {
+		key,
+		parentKey
+	} = nodeData;
 	if (treeObj.hasOwnProperty(key)) {
 		let item = treeObj[key];
 		return getChildData(treeObj, item, childrenArray);
@@ -130,7 +139,9 @@ const getChildrenNodeData = (treeObj, nodeData, childrenArray) => {
  */
 const getChildData = (treeObj, childrenNodes, childrenArray) => {
 	childrenNodes.map((item, index) => {
-		let { key } = item;
+		let {
+			key
+		} = item;
 		if (treeObj.hasOwnProperty(key)) {
 			getChildData(treeObj, treeObj[key], childrenArray);
 		}
@@ -146,12 +157,40 @@ const getChildData = (treeObj, childrenNodes, childrenArray) => {
  */
 export const TransTreeData = (key, arrayData) => {
 	let nodeData = arrayData.find((item) => item.key === key);
-	let { treeObj, treeArray } = separateData(arrayData);
+	let {
+		treeObj,
+		treeArray
+	} = separateData(arrayData);
 	let parentArray = [],
-		childrenArray = [];
+		childrenArray = [],
+		newArray = [];
 	parentArray = getParentNodeData(arrayData, treeObj, nodeData, parentArray);
 	childrenArray = getChildrenNodeData(treeObj, nodeData, childrenArray);
 	parentArray = parentArray ? parentArray : [];
 	childrenArray = childrenArray ? childrenArray : [];
-	return parentArray.concat(childrenArray);
+	newArray = _.filter(arrayData, (item) => {
+		let falg = true;
+		if (item.key === key) {
+			return false;
+		}
+		childrenArray.map((i) => {
+			if (item.key === i.key) {
+				falg = false;
+			}
+		});
+		return falg;
+	});
+	return {
+		newArray: newArray,
+		transferArray: parentArray.concat(childrenArray)
+	};
 };
+
+/**
+ * 数组合并去重
+ * @param {Array} array1 
+ * @param {Array} array2 
+ */
+export const MergeArrayData = (array1, array2) => {
+	return _.uniqWith(array1.concat(array2), _.isEqual);
+}

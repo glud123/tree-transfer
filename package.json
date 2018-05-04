@@ -9,7 +9,7 @@
 	],
 	"scripts": {
 		"dev": "webpack-dev-server --progress --colors --config ./config/dev.js",
-		"build": "export NODE_ENV = develope && webpack --progress --colors --config ./config/build.js"
+		"build": "set export NODE_ENV = develope && webpack --progress --colors --config ./config/build.js"
 	},
 	"keywords": [
 		"react",

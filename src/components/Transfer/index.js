@@ -1,9 +1,19 @@
-import React, { Component } from 'react';
-import { Button } from 'antd';
-import { connect } from 'react-redux';
+import React, {
+	Component
+} from 'react';
+import {
+	Button
+} from 'antd';
+import {
+	connect
+} from 'react-redux';
 import PropTypes from 'prop-types';
 import Tree from 'Components/Tree';
-import { MakeTreeData, TransTreeData } from 'Util/MakeTreeData';
+import {
+	MakeTreeData,
+	TransTreeData,
+	MergeArrayData
+} from 'Util/MakeTreeData';
 import {
 	setLeftTreeArray,
 	setRightTreeArray,
@@ -17,8 +27,7 @@ class Transfer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			btns: [
-				{
+			btns: [{
 					key: 'allToRight',
 					name: '>>',
 					className: ''
@@ -47,45 +56,58 @@ class Transfer extends Component {
 	 *@param {String} key 
 	 */
 	handleBtnClick = (key) => {
+		let {
+			allTreeArray,
+			leftTreeArray,
+			rightTreeArray,
+			leftSelectedKey,
+			rightSelectedKey,
+			setRightTreeData,
+			setLeftTreeData,
+			setRightTreeArray,
+			setLeftTreeArray
+		} = this.props;
 		let nodes;
 		switch (key) {
 			case 'allToRight':
 				this.setState({
 					btnType: 'allToRight'
 				});
-				this.props.setRightTreeData(MakeTreeData(this.props.allTreeArray));
-				this.props.setLeftTreeData([]);
-				this.props.setRightTreeArray(this.props.allTreeArray);
-				this.props.setLeftTreeArray([]);
+				setRightTreeData(MakeTreeData(allTreeArray));
+				setLeftTreeData([]);
+				setRightTreeArray(allTreeArray);
+				setLeftTreeArray([]);
 				break;
 			case 'toRight':
 				this.setState({
 					btnType: 'toRight'
 				});
-				nodes = TransTreeData(this.props.leftSelectedKey[0], this.props.leftTreeArray).concat(
-					this.props.rightTreeArray
-				);
-				this.props.setRightTreeArray(nodes);
-				this.props.setRightTreeData(MakeTreeData(nodes));
+				let toRightArray = TransTreeData(leftSelectedKey[0], leftTreeArray);
+				nodes = MergeArrayData(toRightArray.transferArray, rightTreeArray);
+				setRightTreeArray(nodes);
+				setRightTreeData(MakeTreeData(nodes));
+				setLeftTreeArray(toRightArray.newArray);
+				setLeftTreeData(MakeTreeData(toRightArray.newArray));
 				break;
 			case 'tolLeft':
 				this.setState({
 					btnType: 'tolLeft'
 				});
-				nodes = TransTreeData(this.props.leftSelectedKey[0], this.props.rightTreeArray).concat(
-					this.props.leftTreeArray
-				);
-				this.props.setLeftTreeArray(nodes);
-				this.props.setLeftTreeData(MakeTreeData(nodes));
+				let toLeftArray = TransTreeData(rightSelectedKey[0], rightTreeArray);
+				nodes = MergeArrayData(toLeftArray.transferArray, leftTreeArray);
+				setLeftTreeArray(nodes);
+				setLeftTreeData(MakeTreeData(nodes));
+				setRightTreeArray(toLeftArray.newArray);
+				setRightTreeData(MakeTreeData(toLeftArray.newArray));
 				break;
 			case 'allToLeft':
 				this.setState({
 					btnType: 'allToLeft'
 				});
-				this.props.setRightTreeData([]);
-				this.props.setLeftTreeData(MakeTreeData(this.props.allTreeArray));
-				this.props.setRightTreeArray([]);
-				this.props.setLeftTreeArray(this.props.allTreeArray);
+				setRightTreeData([]);
+				setLeftTreeData(MakeTreeData(allTreeArray));
+				setRightTreeArray([]);
+				setLeftTreeArray(allTreeArray);
 				break;
 			default:
 				break;
@@ -98,11 +120,24 @@ class Transfer extends Component {
 	createBtns = (btns) => {
 		let btnDom = [];
 		return btns.map((item, index) => {
-			let { name, className, key } = item;
-			return (
-				<Button key={key} className={className} onClick={this.handleBtnClick.bind(this, key)}>
-					{name}
-				</Button>
+			let {
+				name,
+				className,
+				key
+			} = item;
+			return ( <
+				Button key = {
+					key
+				}
+				className = {
+					className
+				}
+				onClick = {
+					this.handleBtnClick.bind(this, key)
+				} > {
+					name
+				} <
+				/Button>
 			);
 		});
 	};
@@ -136,25 +171,42 @@ class Transfer extends Component {
 		console.log(this.props);
 	}
 	render() {
-		let { btns } = this.state;
-		return (
-			<div className="tree-transfer">
-				<div className="tree-transfer-container">
-					<Tree
-						data={this.props.leftTreeData}
-						dataList={this.props.leftTreeArray}
-						onSelect={this.treeSelectFun('left')}
-					/>
-				</div>
-				<div className="tree-transfer-middle">{this.createBtns(btns)}</div>
-				<div className="tree-transfer-container">
-					<Tree
-						data={this.props.rightTreeData}
-						dataList={this.props.rightTreeArray}
-						onSelect={this.treeSelectFun('right')}
-					/>
-				</div>
-			</div>
+		let {
+			btns
+		} = this.state;
+		return ( <
+			div className = "tree-transfer" >
+			<
+			div className = "tree-transfer-container" >
+			<
+			Tree data = {
+				this.props.leftTreeData
+			}
+			dataList = {
+				this.props.leftTreeArray
+			}
+			onSelect = {
+				this.treeSelectFun('left')
+			}
+			/> < /
+			div > <
+			div className = "tree-transfer-middle" > {
+				this.createBtns(btns)
+			} < /div> <
+			div className = "tree-transfer-container" >
+			<
+			Tree data = {
+				this.props.rightTreeData
+			}
+			dataList = {
+				this.props.rightTreeArray
+			}
+			onSelect = {
+				this.treeSelectFun('right')
+			}
+			/> < /
+			div > <
+			/div>
 		);
 	}
 }
@@ -182,6 +234,12 @@ export default connect(
 		rightTreeData: state.TreeTransferData.rightTreeData,
 		leftSelectedKey: state.TreeTransferData.leftSelectedKey,
 		rightSelectedKey: state.TreeTransferData.rightSelectedKey
-	}),
-	{ setLeftTreeArray, setRightTreeArray, setLeftTreeData, setRightTreeData, setLeftSelectedKey, setRightSelectedKey }
+	}), {
+		setLeftTreeArray,
+		setRightTreeArray,
+		setLeftTreeData,
+		setRightTreeData,
+		setLeftSelectedKey,
+		setRightSelectedKey
+	}
 )(Transfer);
