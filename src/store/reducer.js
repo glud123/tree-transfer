@@ -14,7 +14,11 @@ let defaultState = {
 	// 选中左侧的树节点
 	leftSelectedKey: [],
 	// 选中右侧的树节点
-	rightSelectedKey: []
+	rightSelectedKey: [],
+	// 左侧标题
+	leftTitle:'',
+	// 右侧标题
+	rightTitle:''
 };
 // 首页表单数据
 export const TreeTransferData = (state = defaultState, action = {}) => {
@@ -35,6 +39,10 @@ export const TreeTransferData = (state = defaultState, action = {}) => {
 			return { ...state, ...{ leftSelectedKey: action.data } };
 		case TreeTransfer.SETRIGHTSELECTEDKEY:
 			return { ...state, ...{ rightSelectedKey: action.data } };
+		case TreeTransfer.SETLEFTTITLE:
+			return { ...state, ...{ leftTitle: action.data } };
+		case TreeTransfer.SETRIGHTTITLE:
+			return { ...state, ...{ rightTitle: action.data } };
 		default:
 			return state;
 	}

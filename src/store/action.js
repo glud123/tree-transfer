@@ -55,3 +55,17 @@ export const setRightSelectedKey = (data) => {
 		data
 	};
 };
+// 设置左标题
+export const setLeftTitle = (data) => {
+	return {
+		type: TreeTransfer.SETLEFTTITLE,
+		data
+	};
+};
+// 设置右标题
+export const setRightTitle = (data) => {
+	return {
+		type: TreeTransfer.SETRIGHTTITLE,
+		data
+	};
+};

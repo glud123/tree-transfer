@@ -16,7 +16,7 @@ class App extends Component {
 	render() {
 		return (
 			<div style={{ height: '400px' }}>
-				<TreeTransfer leftTreeData={leftTree} rightTreeData={rightTree} />
+				<TreeTransfer leftTreeData={ leftTree } rightTreeData={ rightTree} leftTitle={'左树'} rightTitle={'右树'}/>
 			</div>
 		);
 	}

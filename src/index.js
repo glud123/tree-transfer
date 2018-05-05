@@ -18,6 +18,8 @@ class TreeTransfer extends Component {
 }
 TreeTransfer.propTypes = {
 	leftTreeData: PropTypes.array.isRequired,
-	rightTreeData: PropTypes.array.isRequired
+	rightTreeData: PropTypes.array.isRequired,
+	leftTitle:PropTypes.string.isRequired,
+	rightTitle:PropTypes.string.isRequired,
 };
 export default TreeTransfer;

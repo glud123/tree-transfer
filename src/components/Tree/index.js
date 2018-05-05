@@ -90,8 +90,10 @@ class SearchTree extends React.Component {
 				return <TreeNode key={item.key} title={title} />;
 			});
 		return (
-			<div>
-				<Search style={{ marginBottom: 8 }} placeholder="Search" onChange={this.onChange} />
+			<div className='tree-container'>
+				<div className='tree-search'>
+					<Search  placeholder="请查询" onChange={this.onChange} />
+				</div>
 				<Tree
 					showLine={true}
 					onExpand={this.onExpand}

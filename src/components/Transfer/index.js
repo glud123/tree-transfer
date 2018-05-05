@@ -125,7 +125,7 @@ class Transfer extends Component {
 				className,
 				key
 			} = item;
-			return ( <Button key = {key} className = {className} onClick = {this.handleBtnClick.bind(this, key)} > 
+			return ( <Button key = {key} className = {`transfer-btn ${className}`} onClick = {this.handleBtnClick.bind(this, key)} > 
 						{name}
 					</Button>
 			);
@@ -158,45 +158,32 @@ class Transfer extends Component {
 	componentWillMount() {
 		this.props.setLeftTreeData(MakeTreeData(this.props.leftTreeArray));
 		this.props.setRightTreeData(MakeTreeData(this.props.rightTreeArray));
-		console.log(this.props);
 	}
 	render() {
-		let {
-			btns
-		} = this.state;
-		return ( <
-			div className = "tree-transfer" >
-			<
-			div className = "tree-transfer-container" >
-			<
-			Tree data = {
-				this.props.leftTreeData
-			}
-			dataList = {
-				this.props.leftTreeArray
-			}
-			onSelect = {
-				this.treeSelectFun('left')
-			}
-			/> < /
-			div > <
-			div className = "tree-transfer-middle" > {
-				this.createBtns(btns)
-			} < /div> <
-			div className = "tree-transfer-container" >
-			<
-			Tree data = {
-				this.props.rightTreeData
-			}
-			dataList = {
-				this.props.rightTreeArray
-			}
-			onSelect = {
-				this.treeSelectFun('right')
-			}
-			/> < /
-			div > <
-			/div>
+		let {btns} = this.state;
+		let {leftTitle,rightTitle,leftTreeData,rightTreeData,leftTreeArray,rightTreeArray} = this.props;
+		return (
+			<div className = "tree-transfer" >
+				<div className = "tree-transfer-container" >
+					{leftTitle.length>0?<div className='tree-title'>{leftTitle}</div>:null}
+					<Tree 
+					data = {leftTreeData} 
+					dataList = {leftTreeArray} 
+					onSelect = {this.treeSelectFun('left')}
+					/> 
+				</div> 
+				<div className = "tree-transfer-middle" >
+					{this.createBtns(btns)} 
+				</div> 
+				<div className = "tree-transfer-container" >
+					{rightTitle.length>0?<div className='tree-title'>{rightTitle}</div>:null}
+					<Tree 
+					data = {rightTreeData} 
+					dataList = {rightTreeArray} 
+					onSelect = {this.treeSelectFun('right')}
+					/> 
+				</div>
+			</div>
 		);
 	}
 }
@@ -213,7 +200,9 @@ Transfer.propTypes = {
 	setLeftSelectedKey: PropTypes.func.isRequired,
 	setRightSelectedKey: PropTypes.func.isRequired,
 	leftSelectedKey: PropTypes.array.isRequired,
-	rightSelectedKey: PropTypes.array.isRequired
+	rightSelectedKey: PropTypes.array.isRequired,
+	leftTitle:PropTypes.string.isRequired,
+	rightTitle:PropTypes.string.isRequired,
 };
 export default connect(
 	(state) => ({
@@ -223,7 +212,9 @@ export default connect(
 		leftTreeData: state.TreeTransferData.leftTreeData,
 		rightTreeData: state.TreeTransferData.rightTreeData,
 		leftSelectedKey: state.TreeTransferData.leftSelectedKey,
-		rightSelectedKey: state.TreeTransferData.rightSelectedKey
+		rightSelectedKey: state.TreeTransferData.rightSelectedKey,
+		leftTitle:state.TreeTransferData.leftTitle,
+		rightTitle:state.TreeTransferData.rightTitle
 	}), {
 		setLeftTreeArray,
 		setRightTreeArray,
