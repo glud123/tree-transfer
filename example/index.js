@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import TreeTransfer from '../index';
+import {TreeTransfer,getAllTreeData} from '../index';
 import Data from './data.json';
 const leftTree = Data;
 const rightTree = [];
-// console.log(TreeTransfer);
 
 class App extends Component {
 	constructor(props) {
@@ -12,11 +11,14 @@ class App extends Component {
 	}
 
 	componentWillMount() {}
-
+	handleClick =()=>{
+		console.log(getAllTreeData());
+	}
 	render() {
 		return (
 			<div style={{ height: '400px' }}>
-				<TreeTransfer leftTreeData={ leftTree } rightTreeData={ rightTree} leftTitle={'左树'} rightTitle={'右树'}/>
+				<button onClick={this.handleClick}>获取数据</button>
+				<TreeTransfer getAllTreeData={getAllTreeData} leftTreeData={ leftTree } rightTreeData={ rightTree} leftTitle={'左树'} rightTitle={'右树'}/>	
 			</div>
 		);
 	}

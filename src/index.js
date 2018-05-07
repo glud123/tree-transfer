@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
 import Store from 'Store';
 import Middleware from 'Components/Middleware';
+import {getAllTreeData} from 'Util/MakeTreeData';
 class TreeTransfer extends Component {
 	constructor(props) {
 		super(props);
@@ -21,5 +22,6 @@ TreeTransfer.propTypes = {
 	rightTreeData: PropTypes.array.isRequired,
 	leftTitle:PropTypes.string.isRequired,
 	rightTitle:PropTypes.string.isRequired,
+	getAllTreeData:PropTypes.func.isRequired
 };
-export default TreeTransfer;
+export default {TreeTransfer,getAllTreeData};

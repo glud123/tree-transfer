@@ -36,6 +36,16 @@ class Middleware extends Component {
 		setLeftTitle(leftTitle);
 		setRightTitle(rightTitle);
 	}
+	getAllTreeData = () => {
+		return {
+			leftTreeArray: this.props.leftTreeArray,
+			rightTreeArray: this.props.rightTreeArray
+		}
+	}
+	componentDidMount() {
+		this.props.getAllTreeData(this.getAllTreeData);
+	}
+
 	render() {
 		return <Transfer / > ;
 	}
@@ -50,11 +60,15 @@ Middleware.propTypes = {
 	rightTitle: PropTypes.string.isRequired,
 	setLeftTitle: PropTypes.func.isRequired,
 	setRightTitle: PropTypes.func.isRequired,
+	getAllTreeData: PropTypes.func.isRequired,
 };
-export default connect((state) => ({}), {
+export default connect((state) => ({
+	leftTreeArray: state.TreeTransferData.leftTreeArray,
+	rightTreeArray: state.TreeTransferData.rightTreeArray,
+}), {
 	setAllTreeArray,
 	setLeftTreeArray,
 	setRightTreeArray,
 	setLeftTitle,
-	setRightTitle
+	setRightTitle,
 })(Middleware);

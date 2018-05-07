@@ -168,7 +168,7 @@ class Transfer extends Component {
 					{leftTitle.length>0?<div className='tree-title'>{leftTitle}</div>:null}
 					<Tree 
 					data = {leftTreeData} 
-					dataList = {leftTreeArray} 
+					dataList = {leftTreeArray}
 					onSelect = {this.treeSelectFun('left')}
 					/> 
 				</div> 

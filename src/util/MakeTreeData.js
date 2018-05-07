@@ -194,3 +194,15 @@ export const TransTreeData = (key, arrayData) => {
 export const MergeArrayData = (array1, array2) => {
 	return _.uniqWith(array1.concat(array2), _.isEqual);
 }
+/**
+ * 获取树数据的方法 对外提供  先注册在调用
+ * @param {Function} treeData
+ */
+let getTreeDataFun;
+export const getAllTreeData = (treeData)=>{
+	if(treeData){
+		getTreeDataFun = treeData;
+	}else{
+		return getTreeDataFun();
+	}
+}

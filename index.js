@@ -1,7 +1,6 @@
 'use strict';
 
-// var TreeTransfer = require('./lib/index.js');
-var TreeTransfer = require('./src/index.js');
-console.log(TreeTransfer);
+var TreeTransfer = require('./lib/index.js');
+// var TreeTransfer = require('./src/index.js');
 
-module.exports = TreeTransfer;
+module.exports = {...TreeTransfer.default};

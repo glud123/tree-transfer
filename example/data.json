@@ -1,112 +1,112 @@
 [
 	{
-		"key": "10",
-		"title": "动态企业建模"
+		"key": "0-0",
+		"title": "T0-0"
 	},
 	{
-		"key": "1022",
-		"title": "开发配置工具",
-		"parentKey": "10"
+		"key": "0-0-0",
+		"title": "T0-0-0",
+		"parentKey": "0-0"
 	},
 	{
-		"key": "20",
-		"title": "财务会计"
+		"key": "0-0-0-0",
+		"title": "T0-0-0-0",
+		"parentKey": "0-0-0"
 	},
 	{
-		"key": "2012",
-		"title": "固定资产",
-		"parentKey": "20"
+		"key": "0-0-0-0-0",
+		"title": "T0-0-0-0-0",
+		"parentKey": "0-0-0-0"
 	},
 	{
-		"key": "36",
-		"title": "资金管理"
+		"key": "0-1",
+		"title": "T0-1"
 	},
 	{
-		"key": "4004",
-		"title": "采购管理",
-		"parentKey": "40"
+		"key": "0-1-0",
+		"title": "T0-1-0",
+		"parentKey": "0-1"
 	},
 	{
-		"key": "4008",
-		"title": "库存管理",
-		"parentKey": "40"
+		"key": "0-1-0-0",
+		"title": "T0-1-0-0",
+		"parentKey": "0-1-0"
 	},
 	{
-		"key": "40",
-		"title": "资产管理"
+		"key": "0-1-0-0-0",
+		"title": "T0-1-0-0-0",
+		"parentKey": "0-1-0-0"
 	},
 	{
-		"key": "70",
-		"title": "共享服务"
+		"key": "0-1-0-0-1",
+		"title": "T0-1-0-0-1",
+		"parentKey": "0-1-0-0"
 	},
 	{
-		"key": "0001A41000000004E4XV",
-		"title": "报表-用户表",
-		"parentKey": "1002Z91000000000WW9D"
+		"key": "0-1-0-1",
+		"title": "T0-1-0-1",
+		"parentKey": "0-1-0"
 	},
 	{
-		"key": "102202",
-		"title": "功能管理",
-		"parentKey": "1022"
+		"key": "0-1-0-1-0",
+		"title": "T0-1-0-1-0",
+		"parentKey": "0-1-0-1"
 	},
 	{
-		"key": "0001A410000000042L0W",
-		"title": "应用注册",
-		"parentKey": "102202"
+		"key": "0-1-0-1-0-0",
+		"title": "T0-1-0-1-0-0",
+		"parentKey": "0-1-0-1-0"
 	},
 	{
-		"key": "2012016010",
-		"title": "新增资产",
-		"parentKey": "2012"
+		"key": "0-1-0-1-1",
+		"title": "T0-1-0-1-1",
+		"parentKey": "0-1-0-1"
 	},
 	{
-		"key": "0001A410000000043F44",
-		"title": "新增资产审批单",
-		"parentKey": "2012016010"
+		"key": "0-1-0-1-2",
+		"title": "T0-1-0-1-2",
+		"parentKey": "0-1-0-1"
 	},
 	{
-		"key": "0001A410000000043F45",
-		"title": "采购转固单",
-		"parentKey": "2012016010"
+		"key": "0-1-0-1-3",
+		"title": "T0-1-0-1-3",
+		"parentKey": "0-1-0-1"
 	},
 	{
-		"key": "1003Z9100000000WW44L",
-		"title": "资产变动",
-		"parentKey": "2012"
+		"key": "0-2",
+		"title": "T0-2"
 	},
 	{
-		"key": "1002Z91000000000WW9D",
-		"title": "报表",
-		"parentKey": "1003Z9100000000WW44L"
+		"key": "0-3",
+		"title": "T0-3"
 	},
 	{
-		"key": "1009Z0100000000WWBKP",
-		"title": "履约义务档案",
-		"parentKey": "1003Z9100000000WW44L"
+		"key": "0-3-0",
+		"title": "T0-3-0",
+		"parentKey": "0-3"
 	},
 	{
-		"key": "1009Z0100000000HWWPA",
-		"title": "收入合同",
-		"parentKey": "1003Z9100000000WW44L"
+		"key": "0-3-1",
+		"title": "T0-3-1",
+		"parentKey": "0-3"
 	},
 	{
-		"key": "1009Z0100000000HFREE",
-		"title": "附件上传",
-		"parentKey": "1003Z9100000000WW44L"
+		"key": "0-3-1-0",
+		"title": "T0-3-1-0",
+		"parentKey": "0-3-1"
 	},
 	{
-		"key": "0001A410000000042L0Y",
-		"title": "入库业务",
-		"parentKey": "4008"
+		"key": "0-3-1-1",
+		"title": "T0-3-1-1",
+		"parentKey": "0-3-1"
 	},
 	{
-		"key": "400806",
-		"title": "入库业务",
-		"parentKey": "4008"
+		"key": "0-3-1-1-0",
+		"title": "T0-3-1-1-0",
+		"parentKey": "0-3-1-1"
 	},
 	{
-		"key": "0001A410000000042L0Z",
-		"title": "其它入库",
-		"parentKey": "400806"
+		"key": "0-4",
+		"title": "T0-4"
 	}
 ]
