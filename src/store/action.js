@@ -69,3 +69,24 @@ export const setRightTitle = (data) => {
 		data
 	};
 };
+// 是否显示查询框
+export const setTreeWidth = (data) => {
+	return {
+		type: TreeTransfer.SETTREEWIDTH,
+		data
+	};
+};
+// 是否显示查询框
+export const setSearchShow = (data) => {
+	return {
+		type: TreeTransfer.SETSERACHSHOW,
+		data
+	};
+};
+// 设置穿梭按钮
+export const setTransferBtns = (data) => {
+	return {
+		type: TreeTransfer.SETTRANSFERBTN,
+		data
+	};
+};

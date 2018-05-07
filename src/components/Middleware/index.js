@@ -10,7 +10,10 @@ import {
 	setRightTreeArray,
 	setAllTreeArray,
 	setLeftTitle,
-	setRightTitle
+	setRightTitle,
+	setTreeWidth,
+	setSearchShow,
+	setTransferBtns
 } from 'Store/action';
 import Transfer from 'Components/Transfer';
 
@@ -24,17 +27,48 @@ class Middleware extends Component {
 			rightTreeData,
 			leftTitle,
 			rightTitle,
+			treeWidth,
 			setAllTreeArray,
 			setLeftTreeArray,
 			setRightTreeArray,
 			setLeftTitle,
-			setRightTitle
+			setRightTitle,
+			setTreeWidth,
+			setSearchShow,
+			showSearch,
+			transferBtns,
+			setTransferBtns
 		} = this.props;
+		leftTreeData = leftTreeData ? leftTreeData : [];
+		rightTreeData = rightTreeData ? rightTreeData : [];
 		setAllTreeArray(leftTreeData.concat(rightTreeData));
 		setLeftTreeArray(leftTreeData);
 		setRightTreeArray(rightTreeData);
-		setLeftTitle(leftTitle);
-		setRightTitle(rightTitle);
+		setLeftTitle(leftTitle ? leftTitle : '');
+		setRightTitle(rightTitle ? rightTitle : '');
+		setTreeWidth(treeWidth ? treeWidth : 250);
+		setSearchShow(showSearch ? true : false);
+		setTransferBtns(transferBtns ? transferBtns : [{
+				key: 'allToRight',
+				name: '>>',
+				className: ''
+			},
+			{
+				key: 'toRight',
+				name: '>',
+				className: ''
+			},
+			{
+				key: 'tolLeft',
+				name: '<',
+				className: ''
+			},
+			{
+				key: 'allToLeft',
+				name: '<<',
+				className: ''
+			}
+		]);
 	}
 	getAllTreeData = () => {
 		return {
@@ -43,11 +77,13 @@ class Middleware extends Component {
 		}
 	}
 	componentDidMount() {
-		this.props.getAllTreeData(this.getAllTreeData);
+		if (this.props.getAllTreeData) {
+			this.props.getAllTreeData(this.getAllTreeData);
+		}
 	}
 
 	render() {
-		return <Transfer {...this.props}/ > ;
+		return <Transfer / > ;
 	}
 }
 Middleware.propTypes = {
@@ -61,7 +97,12 @@ Middleware.propTypes = {
 	setLeftTitle: PropTypes.func.isRequired,
 	setRightTitle: PropTypes.func.isRequired,
 	getAllTreeData: PropTypes.func.isRequired,
-	treeWidth: PropTypes.string
+	setTreeWidth: PropTypes.func.isRequired,
+	setSearchShow: PropTypes.func.isRequired,
+	setTransferBtns: PropTypes.func.isRequired,
+	treeWidth: PropTypes.number,
+	showSearch: PropTypes.bool,
+	transferBtns: PropTypes.array
 };
 export default connect((state) => ({
 	leftTreeArray: state.TreeTransferData.leftTreeArray,
@@ -72,4 +113,7 @@ export default connect((state) => ({
 	setRightTreeArray,
 	setLeftTitle,
 	setRightTitle,
+	setTreeWidth,
+	setSearchShow,
+	setTransferBtns
 })(Middleware);

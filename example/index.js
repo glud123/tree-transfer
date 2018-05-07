@@ -17,8 +17,8 @@ class App extends Component {
 	render() {
 		return (
 			<div style={{ height: '500px' }}>
+				<TreeTransfer showSearch={true} treeWidth={300} getAllTreeData={getAllTreeData} leftTreeData={ leftTree } rightTreeData={ rightTree} leftTitle={'左树'} rightTitle={'右树'}/>	
 				<button onClick={this.handleClick}>获取数据</button>
-				<TreeTransfer treeWidth={'300px'} getAllTreeData={getAllTreeData} leftTreeData={ leftTree } rightTreeData={ rightTree} leftTitle={'左树'} rightTitle={'右树'}/>	
 			</div>
 		);
 	}

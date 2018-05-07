@@ -18,3 +18,9 @@ export const SETRIGHTSELECTEDKEY = 'SETRIGHTSELECTEDKEY';
 export const SETLEFTTITLE = 'SETLEFTTITLE';
 // 设置右标题
 export const SETRIGHTTITLE = 'SETRIGHTTITLE';
+// 设置树宽度
+export const SETTREEWIDTH = 'SETTREEWIDTH';
+// 是否显示查询框
+export const SETSERACHSHOW = 'SETSERACHSHOW';
+// 设置穿梭按钮
+export const SETTRANSFERBTN = 'SETTRANSFERBTN';

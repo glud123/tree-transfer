@@ -27,27 +27,6 @@ class Transfer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			btns: [{
-					key: 'allToRight',
-					name: '>>',
-					className: ''
-				},
-				{
-					key: 'toRight',
-					name: '>',
-					className: ''
-				},
-				{
-					key: 'tolLeft',
-					name: '<',
-					className: ''
-				},
-				{
-					key: 'allToLeft',
-					name: '<<',
-					className: ''
-				}
-			],
 			btnType: ''
 		};
 	}
@@ -161,25 +140,25 @@ class Transfer extends Component {
 	}
 	render() {
 		let {btns} = this.state;
-		let {leftTitle,rightTitle,leftTreeData,rightTreeData,leftTreeArray,rightTreeArray} = this.props;
+		let {leftTitle,rightTitle,leftTreeData,rightTreeData,leftTreeArray,rightTreeArray,treeWidth,showSearch,transferBtns} = this.props;
 		return (
 			<div className = "tree-transfer" >
-				<div className = "tree-transfer-container" style={{"width":this.props.treeWidth}} >
+				<div className = "tree-transfer-container" style={{"width":treeWidth}} >
 					{leftTitle.length>0?<div className='tree-title'>{leftTitle}</div>:null}
 					<Tree 
-					style ={{"height":`${leftTitle.length>0?'calc(100% - 34px)':'100%'}`}}
+					style ={{"height":`${leftTitle.length>0?'calc(100% - 34px)':'100%'}`,"paddingTop":`${showSearch?'45px':'0px'}`}}
 					data = {leftTreeData} 
 					dataList = {leftTreeArray}
 					onSelect = {this.treeSelectFun('left')}
 					/> 
 				</div> 
 				<div className = "tree-transfer-middle" >
-					{this.createBtns(btns)} 
+					{this.createBtns(transferBtns)} 
 				</div> 
-				<div className = "tree-transfer-container" style={{"width":this.props.treeWidth}}>
+				<div className = "tree-transfer-container" style={{"width":treeWidth}}>
 					{rightTitle.length>0?<div className='tree-title'>{rightTitle}</div>:null}
 					<Tree 
-					style ={{"height":`${rightTitle.length>0?'calc(100% - 34px)':'100%'}`}}
+					style ={{"height":`${rightTitle.length>0?'calc(100% - 34px)':'100%'}`,"paddingTop":`${showSearch?'45px':'0px'}`}}
 					data = {rightTreeData} 
 					dataList = {rightTreeArray} 
 					onSelect = {this.treeSelectFun('right')}
@@ -205,6 +184,9 @@ Transfer.propTypes = {
 	rightSelectedKey: PropTypes.array.isRequired,
 	leftTitle:PropTypes.string.isRequired,
 	rightTitle:PropTypes.string.isRequired,
+	treeWidth:PropTypes.number.isRequired,
+	showSearch:PropTypes.bool.isRequired,
+	transferBtns:PropTypes.array.isRequired,
 };
 export default connect(
 	(state) => ({
@@ -216,7 +198,10 @@ export default connect(
 		leftSelectedKey: state.TreeTransferData.leftSelectedKey,
 		rightSelectedKey: state.TreeTransferData.rightSelectedKey,
 		leftTitle:state.TreeTransferData.leftTitle,
-		rightTitle:state.TreeTransferData.rightTitle
+		rightTitle:state.TreeTransferData.rightTitle,
+		treeWidth:state.TreeTransferData.treeWidth,
+		showSearch: state.TreeTransferData.showSearch,
+		transferBtns: state.TreeTransferData.transferBtns,
 	}), {
 		setLeftTreeArray,
 		setRightTreeArray,

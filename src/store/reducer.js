@@ -2,7 +2,7 @@ import * as TreeTransfer from './action-type';
 
 let defaultState = {
 	// 完整树原始数据
-	allTreeArray:[],
+	allTreeArray: [],
 	// 左树平铺原始树组
 	leftTreeArray: [],
 	// 右树平铺原始数组
@@ -16,33 +16,115 @@ let defaultState = {
 	// 选中右侧的树节点
 	rightSelectedKey: [],
 	// 左侧标题
-	leftTitle:'',
+	leftTitle: '',
 	// 右侧标题
-	rightTitle:''
+	rightTitle: '',
+	// 树宽
+	treeWidth: '250',
+	// 是否显示查询框 默认为不显示
+	showSearch: false,
+	// 穿梭按钮组
+	transferBtns: [{
+			key: 'allToRight',
+			name: '>>',
+			className: ''
+		},
+		{
+			key: 'toRight',
+			name: '>',
+			className: ''
+		},
+		{
+			key: 'tolLeft',
+			name: '<',
+			className: ''
+		},
+		{
+			key: 'allToLeft',
+			name: '<<',
+			className: ''
+		}
+	]
 };
 // 首页表单数据
 export const TreeTransferData = (state = defaultState, action = {}) => {
 	switch (action.type) {
 		case TreeTransfer.CLEARDATA:
-			return { ...state, ...defaultState };
+			return { ...state,
+				...defaultState
+			};
 		case TreeTransfer.SETALLTREEARRAY:
-			return { ...state, ...{ allTreeArray: action.data } };
+			return { ...state,
+				...{
+					allTreeArray: action.data
+				}
+			};
 		case TreeTransfer.SETLEFTTREEARRAY:
-			return { ...state, ...{ leftTreeArray: action.data } };
+			return { ...state,
+				...{
+					leftTreeArray: action.data
+				}
+			};
 		case TreeTransfer.SETRIGHTTREEARRAY:
-			return { ...state, ...{ rightTreeArray: action.data } };
+			return { ...state,
+				...{
+					rightTreeArray: action.data
+				}
+			};
 		case TreeTransfer.SETLEFTTREEDATA:
-			return { ...state, ...{ leftTreeData: action.data } };
+			return { ...state,
+				...{
+					leftTreeData: action.data
+				}
+			};
 		case TreeTransfer.SETRIGHTTREEDATA:
-			return { ...state, ...{ rightTreeData: action.data } };
+			return { ...state,
+				...{
+					rightTreeData: action.data
+				}
+			};
 		case TreeTransfer.SETLEFTSELECTEDKEY:
-			return { ...state, ...{ leftSelectedKey: action.data } };
+			return { ...state,
+				...{
+					leftSelectedKey: action.data
+				}
+			};
 		case TreeTransfer.SETRIGHTSELECTEDKEY:
-			return { ...state, ...{ rightSelectedKey: action.data } };
+			return { ...state,
+				...{
+					rightSelectedKey: action.data
+				}
+			};
 		case TreeTransfer.SETLEFTTITLE:
-			return { ...state, ...{ leftTitle: action.data } };
+			return { ...state,
+				...{
+					leftTitle: action.data
+				}
+			};
 		case TreeTransfer.SETRIGHTTITLE:
-			return { ...state, ...{ rightTitle: action.data } };
+			return { ...state,
+				...{
+					rightTitle: action.data
+				}
+			};
+		case TreeTransfer.SETTREEWIDTH:
+			return { ...state,
+				...{
+					treeWidth: action.data
+				}
+			};
+		case TreeTransfer.SETSERACHSHOW:
+			return { ...state,
+				...{
+					showSearch: action.data
+				}
+			};
+		case TreeTransfer.SETTRANSFERBTN:
+			return { ...state,
+				...{
+					transferBtns: action.data
+				}
+			};
 		default:
 			return state;
 	}
