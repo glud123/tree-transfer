@@ -6,6 +6,12 @@ React tree transfer Component with antd
 ```
 npm i tree-transfer -S
 ```
+### Example
+```
+npm i 
+
+npm run dev
+```
 
 ### Usage
 ```javaScript
