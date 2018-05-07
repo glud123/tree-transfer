@@ -72,8 +72,8 @@ class Middleware extends Component {
 	}
 	getAllTreeData = () => {
 		return {
-			leftTreeArray: this.props.leftTreeArray,
-			rightTreeArray: this.props.rightTreeArray
+			leftTreeNewData: this.props.leftTreeArray,
+			rightTreeNewData: this.props.rightTreeArray
 		}
 	}
 	componentDidMount() {
