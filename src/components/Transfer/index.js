@@ -164,9 +164,10 @@ class Transfer extends Component {
 		let {leftTitle,rightTitle,leftTreeData,rightTreeData,leftTreeArray,rightTreeArray} = this.props;
 		return (
 			<div className = "tree-transfer" >
-				<div className = "tree-transfer-container" >
+				<div className = "tree-transfer-container" style={{"width":this.props.treeWidth}} >
 					{leftTitle.length>0?<div className='tree-title'>{leftTitle}</div>:null}
 					<Tree 
+					style ={{"height":`${leftTitle.length>0?'calc(100% - 34px)':'100%'}`}}
 					data = {leftTreeData} 
 					dataList = {leftTreeArray}
 					onSelect = {this.treeSelectFun('left')}
@@ -175,9 +176,10 @@ class Transfer extends Component {
 				<div className = "tree-transfer-middle" >
 					{this.createBtns(btns)} 
 				</div> 
-				<div className = "tree-transfer-container" >
+				<div className = "tree-transfer-container" style={{"width":this.props.treeWidth}}>
 					{rightTitle.length>0?<div className='tree-title'>{rightTitle}</div>:null}
 					<Tree 
+					style ={{"height":`${rightTitle.length>0?'calc(100% - 34px)':'100%'}`}}
 					data = {rightTreeData} 
 					dataList = {rightTreeArray} 
 					onSelect = {this.treeSelectFun('right')}

@@ -47,7 +47,7 @@ class Middleware extends Component {
 	}
 
 	render() {
-		return <Transfer / > ;
+		return <Transfer {...this.props}/ > ;
 	}
 }
 Middleware.propTypes = {
@@ -61,6 +61,7 @@ Middleware.propTypes = {
 	setLeftTitle: PropTypes.func.isRequired,
 	setRightTitle: PropTypes.func.isRequired,
 	getAllTreeData: PropTypes.func.isRequired,
+	treeWidth: PropTypes.string
 };
 export default connect((state) => ({
 	leftTreeArray: state.TreeTransferData.leftTreeArray,

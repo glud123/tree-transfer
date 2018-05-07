@@ -90,7 +90,7 @@ class SearchTree extends React.Component {
 				return <TreeNode key={item.key} title={title} />;
 			});
 		return (
-			<div className='tree-container'>
+			<div style={this.props.style} className='tree-container'>
 				<div className='tree-search'>
 					<Search  placeholder="请查询" onChange={this.onChange} />
 				</div>
