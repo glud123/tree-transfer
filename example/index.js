@@ -28,7 +28,7 @@ class App extends Component {
 		let {leftTreeNewData,rightTreeNewData} = this.state;
 		return (
 			<div>
-				<TreeTransfer placeholder={'Search'} showSearch={true} treeWidth={300} getAllTreeData={getAllTreeData} leftTreeData={ leftTree } rightTreeData={ rightTree} leftTitle={'左树'} rightTitle={'右树'}/>	
+				<TreeTransfer placeholder={'Search'} showSearch={true} treeHeight={400} treeWidth={250} getAllTreeData={getAllTreeData} leftTreeData={ leftTree } rightTreeData={ rightTree} leftTitle={'左树'} rightTitle={'右树'}/>	
 				<button style={{'margin':'10px'}} onClick={this.handleClick}>Get AllTreeData</button>
 				<div className='codes'>
 					<div>
