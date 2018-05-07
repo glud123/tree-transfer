@@ -69,10 +69,17 @@ export const setRightTitle = (data) => {
 		data
 	};
 };
-// 是否显示查询框
+// 设置树宽度
 export const setTreeWidth = (data) => {
 	return {
 		type: TreeTransfer.SETTREEWIDTH,
+		data
+	};
+};
+// 设置树高度
+export const setTreeHeight = (data) => {
+	return {
+		type: TreeTransfer.SETTREEHEIGHT,
 		data
 	};
 };
@@ -87,6 +94,13 @@ export const setSearchShow = (data) => {
 export const setTransferBtns = (data) => {
 	return {
 		type: TreeTransfer.SETTRANSFERBTN,
+		data
+	};
+};
+// 设置搜索框placeholder占位符
+export const setPlaceholder = (data) => {
+	return {
+		type: TreeTransfer.SETPLACEHOLDER,
 		data
 	};
 };

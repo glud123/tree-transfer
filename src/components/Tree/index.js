@@ -63,7 +63,7 @@ class SearchTree extends React.Component {
 
 	render() {
 		const { searchValue, expandedKeys, autoExpandParent } = this.state;
-		let { onSelect,showSearch } = this.props;
+		let { onSelect,showSearch,placeholder } = this.props;
 		const loop = (data) =>
 			data.map((item) => {
 				const titleText = `${item.key} ${item.title}`;
@@ -93,7 +93,7 @@ class SearchTree extends React.Component {
 			<div style={this.props.style} className='tree-container'>
 				{
 					showSearch?<div className='tree-search'>
-					<Search  placeholder="请查询" onChange={this.onChange} />
+					<Search  placeholder={placeholder} onChange={this.onChange} />
 					</div>:null
 				}
 				<Tree
@@ -111,7 +111,9 @@ class SearchTree extends React.Component {
 }
 SearchTree.propTypes = {
 	showSearch:PropTypes.bool.isRequired,
+	placeholder:PropTypes.string.isRequired,
 };
 export default connect((state) => ({
-	showSearch: state.TreeTransferData.showSearch
+	showSearch: state.TreeTransferData.showSearch,
+	placeholder: state.TreeTransferData.placeholder
 }), {})(SearchTree);

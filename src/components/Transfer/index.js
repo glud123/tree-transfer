@@ -140,9 +140,9 @@ class Transfer extends Component {
 	}
 	render() {
 		let {btns} = this.state;
-		let {leftTitle,rightTitle,leftTreeData,rightTreeData,leftTreeArray,rightTreeArray,treeWidth,showSearch,transferBtns} = this.props;
+		let {leftTitle,rightTitle,leftTreeData,rightTreeData,leftTreeArray,rightTreeArray,treeWidth,treeHeight,showSearch,transferBtns} = this.props;
 		return (
-			<div className = "tree-transfer" >
+			<div className = "tree-transfer" style={{"height":treeHeight}}>
 				<div className = "tree-transfer-container" style={{"width":treeWidth}} >
 					{leftTitle.length>0?<div className='tree-title'>{leftTitle}</div>:null}
 					<Tree 
@@ -185,6 +185,7 @@ Transfer.propTypes = {
 	leftTitle:PropTypes.string.isRequired,
 	rightTitle:PropTypes.string.isRequired,
 	treeWidth:PropTypes.number.isRequired,
+	treeHeight:PropTypes.number.isRequired,
 	showSearch:PropTypes.bool.isRequired,
 	transferBtns:PropTypes.array.isRequired,
 };
@@ -200,6 +201,7 @@ export default connect(
 		leftTitle:state.TreeTransferData.leftTitle,
 		rightTitle:state.TreeTransferData.rightTitle,
 		treeWidth:state.TreeTransferData.treeWidth,
+		treeHeight:state.TreeTransferData.treeHeight,
 		showSearch: state.TreeTransferData.showSearch,
 		transferBtns: state.TreeTransferData.transferBtns,
 	}), {

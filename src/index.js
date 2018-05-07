@@ -24,7 +24,9 @@ TreeTransfer.propTypes = {
 	rightTitle:PropTypes.string.isRequired,
 	getAllTreeData:PropTypes.func.isRequired,
 	treeWidth:PropTypes.number,
+	treeHeight:PropTypes.number,
 	showSearch:PropTypes.bool,
-	transferBtns:PropTypes.array
+	transferBtns:PropTypes.array,
+	placeholder:PropTypes.string,
 };
 export default {TreeTransfer,getAllTreeData};

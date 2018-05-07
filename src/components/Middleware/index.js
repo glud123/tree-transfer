@@ -12,8 +12,10 @@ import {
 	setLeftTitle,
 	setRightTitle,
 	setTreeWidth,
+	setTreeHeight,
 	setSearchShow,
-	setTransferBtns
+	setTransferBtns,
+	setPlaceholder
 } from 'Store/action';
 import Transfer from 'Components/Transfer';
 
@@ -28,16 +30,20 @@ class Middleware extends Component {
 			leftTitle,
 			rightTitle,
 			treeWidth,
+			treeHeight,
 			setAllTreeArray,
 			setLeftTreeArray,
 			setRightTreeArray,
 			setLeftTitle,
 			setRightTitle,
 			setTreeWidth,
+			setTreeHeight,
 			setSearchShow,
 			showSearch,
 			transferBtns,
-			setTransferBtns
+			setTransferBtns,
+			setPlaceholder,
+			placeholder
 		} = this.props;
 		leftTreeData = leftTreeData ? leftTreeData : [];
 		rightTreeData = rightTreeData ? rightTreeData : [];
@@ -47,6 +53,7 @@ class Middleware extends Component {
 		setLeftTitle(leftTitle ? leftTitle : '');
 		setRightTitle(rightTitle ? rightTitle : '');
 		setTreeWidth(treeWidth ? treeWidth : 250);
+		setTreeHeight(treeHeight ? treeHeight : 400);
 		setSearchShow(showSearch ? true : false);
 		setTransferBtns(transferBtns ? transferBtns : [{
 				key: 'allToRight',
@@ -69,6 +76,7 @@ class Middleware extends Component {
 				className: ''
 			}
 		]);
+		setPlaceholder(placeholder ? placeholder : '');
 	}
 	getAllTreeData = () => {
 		return {
@@ -98,11 +106,15 @@ Middleware.propTypes = {
 	setRightTitle: PropTypes.func.isRequired,
 	getAllTreeData: PropTypes.func.isRequired,
 	setTreeWidth: PropTypes.func.isRequired,
+	setTreeHeight: PropTypes.func.isRequired,
 	setSearchShow: PropTypes.func.isRequired,
 	setTransferBtns: PropTypes.func.isRequired,
+	setPlaceholder: PropTypes.func.isRequired,
 	treeWidth: PropTypes.number,
+	treeHeight: PropTypes.number,
 	showSearch: PropTypes.bool,
-	transferBtns: PropTypes.array
+	transferBtns: PropTypes.array,
+	placeholder: PropTypes.string
 };
 export default connect((state) => ({
 	leftTreeArray: state.TreeTransferData.leftTreeArray,
@@ -114,6 +126,8 @@ export default connect((state) => ({
 	setLeftTitle,
 	setRightTitle,
 	setTreeWidth,
+	setTreeHeight,
 	setSearchShow,
-	setTransferBtns
+	setTransferBtns,
+	setPlaceholder
 })(Middleware);

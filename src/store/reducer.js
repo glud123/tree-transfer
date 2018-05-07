@@ -21,6 +21,8 @@ let defaultState = {
 	rightTitle: '',
 	// 树宽
 	treeWidth: '250',
+	// 整个组件的高度
+	treeHeight: '400',
 	// 是否显示查询框 默认为不显示
 	showSearch: false,
 	// 穿梭按钮组
@@ -44,7 +46,9 @@ let defaultState = {
 			name: '<<',
 			className: ''
 		}
-	]
+	],
+	// 搜索框占位符
+	placeholder:''
 };
 // 首页表单数据
 export const TreeTransferData = (state = defaultState, action = {}) => {
@@ -113,6 +117,12 @@ export const TreeTransferData = (state = defaultState, action = {}) => {
 					treeWidth: action.data
 				}
 			};
+		case TreeTransfer.SETTREEHEIGHT:
+			return { ...state,
+				...{
+					treeHeight: action.data
+				}
+			};
 		case TreeTransfer.SETSERACHSHOW:
 			return { ...state,
 				...{
@@ -123,6 +133,12 @@ export const TreeTransferData = (state = defaultState, action = {}) => {
 			return { ...state,
 				...{
 					transferBtns: action.data
+				}
+			};
+		case TreeTransfer.SETPLACEHOLDER:
+			return { ...state,
+				...{
+					placeholder: action.data
 				}
 			};
 		default:
