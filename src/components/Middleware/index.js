@@ -9,6 +9,8 @@ import {
 	setLeftTreeArray,
 	setRightTreeArray,
 	setAllTreeArray,
+	setLeftTreeData,
+	setRightTreeData,
 	setLeftTitle,
 	setRightTitle,
 	setTreeWidth,
@@ -17,16 +19,23 @@ import {
 	setTransferBtns,
 	setPlaceholder
 } from 'Store/action';
+import {
+	MakeTreeData
+} from 'Util/MakeTreeData';
 import Transfer from 'Components/Transfer';
 
 class Middleware extends Component {
 	constructor(props) {
 		super(props);
 	}
-	componentWillMount() {
+	updateProps = (propsData)=>{
 		let {
 			leftTreeData,
 			rightTreeData,
+			leftTreeArray,
+			rightTreeArray,
+			setLeftTreeData,
+			setRightTreeData,
 			leftTitle,
 			rightTitle,
 			treeWidth,
@@ -44,12 +53,10 @@ class Middleware extends Component {
 			setTransferBtns,
 			setPlaceholder,
 			placeholder
-		} = this.props;
+		} = propsData;
 		leftTreeData = leftTreeData ? leftTreeData : [];
 		rightTreeData = rightTreeData ? rightTreeData : [];
-		setAllTreeArray(leftTreeData.concat(rightTreeData));
-		setLeftTreeArray(leftTreeData);
-		setRightTreeArray(rightTreeData);
+		
 		setLeftTitle(leftTitle ? leftTitle : '');
 		setRightTitle(rightTitle ? rightTitle : '');
 		setTreeWidth(treeWidth ? treeWidth : 250);
@@ -77,6 +84,28 @@ class Middleware extends Component {
 			}
 		]);
 		setPlaceholder(placeholder ? placeholder : '');
+		setLeftTreeData(MakeTreeData(leftTreeArray));
+		setRightTreeData(MakeTreeData(rightTreeArray));
+	}
+	updateTreeArray = (propsData)=>{
+		let {leftTreeData,
+			rightTreeData,
+			setAllTreeArray,
+			setLeftTreeArray,
+			setRightTreeArray} = propsData;
+		setAllTreeArray(leftTreeData.concat(rightTreeData));
+		setLeftTreeArray(leftTreeData);
+		setRightTreeArray(rightTreeData);
+	}
+	componentWillMount() {
+		this.updateTreeArray(this.props);
+		this.updateProps(this.props);
+	}
+	componentWillReceiveProps(nextProps){
+		if(this.props.leftTreeData.length !== nextProps.leftTreeData.length){
+			this.updateTreeArray(nextProps);
+		}
+		this.updateProps(nextProps);
 	}
 	getAllTreeData = () => {
 		return {
@@ -100,6 +129,8 @@ Middleware.propTypes = {
 	setAllTreeArray: PropTypes.func.isRequired,
 	setLeftTreeArray: PropTypes.func.isRequired,
 	setRightTreeArray: PropTypes.func.isRequired,
+	setLeftTreeData: PropTypes.func.isRequired,
+	setRightTreeData: PropTypes.func.isRequired,
 	leftTitle: PropTypes.string.isRequired,
 	rightTitle: PropTypes.string.isRequired,
 	setLeftTitle: PropTypes.func.isRequired,
@@ -123,6 +154,8 @@ export default connect((state) => ({
 	setAllTreeArray,
 	setLeftTreeArray,
 	setRightTreeArray,
+	setLeftTreeData,
+	setRightTreeData,
 	setLeftTitle,
 	setRightTitle,
 	setTreeWidth,

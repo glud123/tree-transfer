@@ -3,19 +3,33 @@ import ReactDOM from 'react-dom';
 import {TreeTransfer,getAllTreeData} from '../index';
 import Data from './data.json';
 import './index.less';
-const leftTree = Data;
-const rightTree = [];
+// const leftTree = Data;
+// const leftTree = [
+// 	{
+// 		"key": "0000000000ac00002123",
+// 		"title": "was"
+// 	},];
+// const rightTree = [];
 
 class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state={
+			leftTree:[],
+			rightTree:[],
 			leftTreeNewData:[],
 			rightTreeNewData:[]
 		}
 	}
 
-	componentWillMount() {}
+	componentDidMount() {
+		this.setState({
+			leftTree :[{
+					"key": "0000000000ac00002123",
+					"title": "was"
+				}]
+		});
+	}
 	handleClick =()=>{
 		let{leftTreeNewData,rightTreeNewData} = getAllTreeData();
 		this.setState({leftTreeNewData,rightTreeNewData});
@@ -25,7 +39,7 @@ class App extends Component {
 	// 将字符串进行换行处理
 	toString =(array)=>array.map((item)=>JSON.stringify(item));
 	render() {
-		let {leftTreeNewData,rightTreeNewData} = this.state;
+		let {leftTree,rightTree,leftTreeNewData,rightTreeNewData} = this.state;
 		return (
 			<div>
 				<TreeTransfer placeholder={'Search'} showSearch={true} treeHeight={400} treeWidth={250} getAllTreeData={getAllTreeData} leftTreeData={ leftTree } rightTreeData={ rightTree} leftTitle={'左树'} rightTitle={'右树'}/>	

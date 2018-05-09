@@ -82,8 +82,8 @@ const mergeTreeData = ({
 export const MakeTreeData = (data) => {
 	let treeArray = _.cloneDeep(data);
 	let treeData = mergeTreeData(separateData(treeArray));
+	// console.log(treeData);
 	return treeData;
-	console.log(treeData);
 };
 /**
  * 获取选中节点父节点

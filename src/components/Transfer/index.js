@@ -58,6 +58,9 @@ class Transfer extends Component {
 				setLeftTreeArray([]);
 				break;
 			case 'toRight':
+				if(leftSelectedKey.length === 0){
+					return;
+				}
 				this.setState({
 					btnType: 'toRight'
 				});
@@ -67,8 +70,12 @@ class Transfer extends Component {
 				setRightTreeData(MakeTreeData(nodes));
 				setLeftTreeArray(toRightArray.newArray);
 				setLeftTreeData(MakeTreeData(toRightArray.newArray));
+				this.props.setLeftSelectedKey([]);
 				break;
 			case 'tolLeft':
+				if(rightSelectedKey.length === 0){
+					return;
+				}
 				this.setState({
 					btnType: 'tolLeft'
 				});
@@ -78,6 +85,7 @@ class Transfer extends Component {
 				setLeftTreeData(MakeTreeData(nodes));
 				setRightTreeArray(toLeftArray.newArray);
 				setRightTreeData(MakeTreeData(toLeftArray.newArray));
+				this.props.setRightSelectedKey([]);
 				break;
 			case 'allToLeft':
 				this.setState({
@@ -134,13 +142,9 @@ class Transfer extends Component {
 				break;
 		}
 	};
-	componentWillMount() {
-		this.props.setLeftTreeData(MakeTreeData(this.props.leftTreeArray));
-		this.props.setRightTreeData(MakeTreeData(this.props.rightTreeArray));
-	}
 	render() {
 		let {btns} = this.state;
-		let {leftTitle,rightTitle,leftTreeData,rightTreeData,leftTreeArray,rightTreeArray,treeWidth,treeHeight,showSearch,transferBtns} = this.props;
+		let {leftTitle,rightTitle,leftSelectedKey,rightSelectedKey,leftTreeData,rightTreeData,leftTreeArray,rightTreeArray,treeWidth,treeHeight,showSearch,transferBtns} = this.props;
 		return (
 			<div className = "tree-transfer" style={{"height":treeHeight}}>
 				<div className = "tree-transfer-container" style={{"width":treeWidth}} >
@@ -150,6 +154,7 @@ class Transfer extends Component {
 					data = {leftTreeData} 
 					dataList = {leftTreeArray}
 					onSelect = {this.treeSelectFun('left')}
+					selectedKeys = {leftSelectedKey}
 					/> 
 				</div> 
 				<div className = "tree-transfer-middle" >
@@ -162,6 +167,7 @@ class Transfer extends Component {
 					data = {rightTreeData} 
 					dataList = {rightTreeArray} 
 					onSelect = {this.treeSelectFun('right')}
+					selectedKeys = {rightSelectedKey}
 					/> 
 				</div>
 			</div>
